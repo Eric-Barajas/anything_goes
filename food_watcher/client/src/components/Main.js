@@ -41,7 +41,7 @@ const Main = () => {
         <div className="app">
             <div>
                 <form className="d-flex" role="search" onSubmit={(e) => handleSubmit(e)}>
-                    <input className="form-control me-2" value={ingredient} type="search" placeholder="Search" aria-label="Search" />
+                    {/* <input className="form-control me-2" value={ingredient} type="search" placeholder="Search" aria-label="Search" /> */}
                     <input className="btn btn-outline-success" type="submit" />
                 </form>
             </div>
