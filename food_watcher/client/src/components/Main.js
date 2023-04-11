@@ -28,28 +28,61 @@ const Main = () => {
             }
         };
 
-        axios.request(options).then(function (response) {
-            console.log(response.data);
-        }).catch(function (error) {
-            console.error(error);
-        });
+        axios.request(options).then((response) => {
+            console.log(response.data)
+            setFoodInfo(response.data)
+        }).catch(err => {
+            console.log(err.response.status)
+            if (err.response.status === 404) {
+                console.log("Mission Failed");
+            }
+        })
     }
 
-    console.log(foodinfo)
+    console.log(foodinfo && foodinfo.parsed)
 
     return (
         <div className="app">
             <div>
-                <form className="d-flex" role="search" onSubmit={(e) => handleSubmit(e)}>
-                    {/* <input className="form-control me-2" value={ingredient} type="search" placeholder="Search" aria-label="Search" /> */}
+                <form className="d-flex p-5" role="search" onSubmit={(e) => handleSubmit(e)}>
+                    <input className="form-control me-2"
+                        type="search"
+                        placeholder="Type an ingredient"
+                        aria-label="Search"
+                        onChange={(e) => setIngredient(e.target.value)}
+                        value={ingredient}
+                    />
                     <input className="btn btn-outline-success" type="submit" />
                 </form>
+                <br /><br />
             </div>
 
             {(ingredient && foodinfo) && <div className="ingr-area">
+                {/* <h3> {foodinfo.parsed.food.label}</h3> */}
+                <div className='grid-container'>
+                    {/* everytime you map will need a unique key */}
+                    {foodinfo.parsed.map((parsed, foodIndex) => (
+                        <div key={foodIndex}>
+                            <img src={parsed.food.image} alt="Girl in a jacket"></img>
+                            <h5>{parsed.food.label}</h5>
+                            <h5>Calories: {parsed.food.nutrients.ENERC_KCAL}</h5>
+                            <h5>Fat: {parsed.food.nutrients.FAT}</h5>
+                            {/* {parsed.food.map((food, _food) => (
+                                <div key={_food}>
+                                    {food.nutrients.map((nutrients, _nothing) => (
+                                        <div key={_nothing}>
+                                            <label> Calories: </label>
+                                            <p className='white'> {ENERC_KCAL} </p>
+                                        </div>
+                                    ))}
+                                </div>
+                            ))} */}
+                        </div>
+                    ))}
 
+                </div>
             </div>}
-        </div>
+        </div >
     )
 }
 
