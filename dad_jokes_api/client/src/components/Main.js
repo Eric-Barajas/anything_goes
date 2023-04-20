@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
-import './styling.css';
 
 const Main = () => {
 
@@ -36,15 +35,18 @@ const Main = () => {
         <div className="app">
             <div>
                 <div className="d-flex p-5" role="search" onSubmit={(e) => handleSubmit(e)}>
+                    <div>
+                        <h1>Hello</h1>
+                    </div>
                     <input className="btn btn-outline-success" type="submit" />
                 </div>
                 <br /><br />
             </div>
 
-            {(dadjokes) && <div className="joke">
-                {/* <h3> {foodinfo.parsed.food.label}</h3> */}
+            {/* (dadjokes) && <div className="joke">
+                <h3> {foodinfo.parsed.food.label}</h3>
                 <div className='grid-container'>
-                    {/* everytime you map will need a unique key */}
+                    everytime you map will need a unique key
                     {foodinfo.parsed.map((parsed, foodIndex) => (
                         <div key={foodIndex}>
                             <img src={parsed.food.image} alt="Girl in a jacket"></img>
@@ -55,7 +57,8 @@ const Main = () => {
                     ))}
 
                 </div>
-            </div>}
+            </div> */}
+
         </div >
     )
 }
