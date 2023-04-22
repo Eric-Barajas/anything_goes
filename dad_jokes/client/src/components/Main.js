@@ -29,16 +29,26 @@ const Main = () => {
         })
     }
 
-    console.log(dadjokes)
+    console.log(dadjokes && dadjokes.body)
 
     return (
         <div>
-            <div className="d-flex p-5" role="search" onSubmit={(e) => handleSubmit(e)}>
-                <div>
-                    <h1>Hello</h1>
-                </div>
+            <form className="d-flex p-5" role="search" onSubmit={(e) => handleSubmit(e)}>
                 <input className="btn btn-outline-success" type="submit" />
-            </div>
+            </form>
+
+            {(dadjokes) && <div className="joke">
+                <div className='grid-container'>
+                    {/* everytime you map will need a unique key */}
+                    {dadjokes.body.map((body, contentIndex) => (
+                        <div key={contentIndex}>
+                            <img src={body.image} alt="funny"></img>
+                            <h5>{body.setup}</h5>
+                        </div>
+                    ))}
+
+                </div>
+            </div>}
 
         </div>
     )
