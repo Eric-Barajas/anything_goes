@@ -40,12 +40,12 @@ const Main = () => {
             {(dadjokes) && <div className="joke">
                 <div className='grid-container'>
                     {/* everytime you map will need a unique key */}
-                    {/* {dadjokes.body.map((body, contentIndex) => (
+                    {dadjokes.body.map((body, contentIndex) => (
                         <div key={contentIndex}>
                             <img src={body.image} alt="funny"></img>
                             <h5>{body.setup}</h5>
                         </div>
-                    ))} */}
+                    ))}
 
                 </div>
             </div>}
