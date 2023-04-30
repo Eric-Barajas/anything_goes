@@ -6,13 +6,16 @@
 }
 
 body {
+    background: #050801;
+}
+
+.buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     flex-direction: column;
     /* ^ places the three buttons on top on one another */
-    background: #050801;
 }
 
 a {
@@ -80,7 +83,7 @@ a span:nth-child(2) {
     height: 100%;
     background: linear-gradient(180deg, transparent, #03e9f4);
     animation: animate2 1s linear infinite;
-    animation-delay: 0.4s;
+    animation-delay: 0.25s;
 }
 
 @keyframes animate2 {
@@ -101,7 +104,7 @@ a span:nth-child(3) {
     height: 2px;
     background: linear-gradient(270deg, transparent, #03e9f4);
     animation: animate3 1s linear infinite;
-    animation-delay: 0.95s;
+    animation-delay: 0.5s;
 }
 
 @keyframes animate3 {
@@ -122,7 +125,7 @@ a span:nth-child(4) {
     height: 100%;
     background: linear-gradient(360deg, transparent, #03e9f4);
     animation: animate4 1s linear infinite;
-    animation-delay: 0.5s;
+    animation-delay: 0.75s;
 }
 
 @keyframes animate4 {
