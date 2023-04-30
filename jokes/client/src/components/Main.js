@@ -5,7 +5,7 @@ import './styling.css';
 
 const Main = () => {
 
-    const [dadjokes, setDadJokes] = useState(null)
+    const [punchlinejokes, setPunchlineJokes] = useState(null)
 
     const handleSubmit = (e) => {
         console.log("test")
@@ -21,7 +21,7 @@ const Main = () => {
 
         axios.request(options).then((response) => {
             console.log(response.data)
-            setDadJokes(response.data)
+            setPunchlineJokes(response.data)
         }).catch(err => {
             console.log(err.response.status)
             if (err.response.status === 404) {
@@ -30,7 +30,7 @@ const Main = () => {
         })
     }
 
-    console.log(dadjokes && dadjokes.body)
+    console.log(punchlinejokes && punchlinejokes.body)
 
     return (
         <div>
@@ -44,16 +44,16 @@ const Main = () => {
                 </div>
             </form>
 
-            {(dadjokes) && <div className="thejoke">
+            {(punchlinejokes) && <div className="thejoke">
                 <h3>Hover over the setup for the punchline:</h3>
                 <div className='flip-card'>
 
                     <div className='grid-container flip-card-inner'>
                         <div className="flip-card-front">
-                            <h4>{dadjokes.body.setup}</h4>
+                            <h4>{punchlinejokes.body.setup}</h4>
                         </div>
                         <div className='flip-card-back'>
-                            <h4>{dadjokes.body.punchline}</h4>
+                            <h4>{punchlinejokes.body.punchline}</h4>
                         </div>
                     </div>
 
