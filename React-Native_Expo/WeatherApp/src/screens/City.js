@@ -1,8 +1,10 @@
+/* eslint-disable prettier/prettier */
 import React from 'react'
 import { SafeAreaView, Text, ImageBackground, StyleSheet, View, StatusBar } from 'react-native'
+import moment from 'moment'
 import IconText from '../components/IconText'
 
-const City = () => {
+const City = ({ weatherData }) => {
 
     const {
         container,
@@ -17,16 +19,18 @@ const City = () => {
         imageLayout
     } = styles
 
+    const { name, country, population, sunrise, sunset } = weatherData
+
     return (
         <SafeAreaView style={container}>
             <ImageBackground source={require('../../assets/city-background2.jpg')} style={imageLayout}>
-                <Text style={[cityName, cityText]}>London</Text>
-                <Text style={[countryName, cityText]}>UK</Text>
+                <Text style={[cityName, cityText]}>{name}</Text>
+                <Text style={[countryName, cityText]}>{country}</Text>
                 <View style={[populationWrapper, rowLayout]}>
                     <IconText
                         iconName={'user'}
                         iconColor={'red'}
-                        bodyText={'8000'}
+                        bodyText={`Population: ${population}`}
                         bodyTextStyles={populationText}
                     />
                 </View>
@@ -34,13 +38,13 @@ const City = () => {
                     <IconText
                         iconName={'sunrise'}
                         iconColor={'white'}
-                        bodyText={'10:46:58am'}
+                        bodyText={moment(sunrise).format('h:mm:ss a')}
                         bodyTextStyles={riseSetText}
                     />
                     <IconText
                         iconName={'sunset'}
                         iconColor={'white'}
-                        bodyText={'17:28:15pm'}
+                        bodyText={moment(sunset).format('h:mm:ss a')}
                         bodyTextStyles={riseSetText}
                     />
                 </View>
@@ -53,16 +57,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginTop: StatusBar.currentHeight || 0,
-        backgroundColor: 'black',
+        backgroundColor: 'black'
     },
     imageLayout: {
-        flex: 1,
+        flex: 1
     },
     cityName: {
-        fontSize: 40,
+        fontSize: 40
     },
     countryName: {
-        fontSize: 30,
+        fontSize: 30
     },
     cityText: {
         justifyContent: 'center',
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
     populationText: {
         fontSize: 25,
         marginLeft: 7.5,
-        color: 'red',
+        color: 'red'
     },
     riseSetWrapper: {
         justifyContent: 'space-around',
@@ -85,12 +89,12 @@ const styles = StyleSheet.create({
     },
     riseSetText: {
         fontSize: 20,
-        color: 'white',
+        color: 'white'
     },
     rowLayout: {
         flexDirection: 'row',
-        alignItems: 'center',
-    },
+        alignItems: 'center'
+    }
 })
 
 export default City

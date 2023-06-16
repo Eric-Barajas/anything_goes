@@ -1,23 +1,25 @@
-import React from "react";
-import CurrentWeather from '../screens/CurrentWeather';
-import UpcomingWeather from '../screens/UpcomingWeather';
-import City from "../screens/City";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable prettier/prettier */
+import React from 'react'
+import CurrentWeather from '../screens/CurrentWeather'
+import UpcomingWeather from '../screens/UpcomingWeather'
+import City from '../screens/City'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Feather } from '@expo/vector-icons'
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
-const Tabs = () => {
+const Tabs = ({ weather }) => {
     return (
         <Tab.Navigator
             screenOptions={{
                 tabBarActiveTintColor: 'tomato',
                 tabBarInactiveTintColor: 'grey',
                 tabBarStyle: {
-                    backgroundColor: 'lightblue',
+                    backgroundColor: 'lightblue'
                 },
                 headerStyle: {
-                    backgroundColor: 'lightblue',
+                    backgroundColor: 'lightblue'
                 },
                 headerTitleStyle: {
                     fontWeight: 'bold',
@@ -28,7 +30,6 @@ const Tabs = () => {
         >
             <Tab.Screen
                 name={'Current'}
-                component={CurrentWeather}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Feather
@@ -38,10 +39,15 @@ const Tabs = () => {
                         />
                     )
                 }}
-            />
+            >
+                {() => <CurrentWeather weatherData={weather.list[0]} />}
+                {/* in order tp pass the props to the component we need to render
+                a callback to return the element to use for the scrren instead of 
+                using the componnt prop */}
+            </Tab.Screen>
+
             <Tab.Screen
                 name={'Upcoming'}
-                component={UpcomingWeather}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Feather
@@ -51,10 +57,11 @@ const Tabs = () => {
                         />
                     )
                 }}
-            />
+            >
+                {() => <UpcomingWeather weatherData={weather.list} />}
+            </Tab.Screen>
             <Tab.Screen
                 name={'City'}
-                component={City}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Feather
@@ -64,7 +71,9 @@ const Tabs = () => {
                         />
                     )
                 }}
-            />
+            >
+                {() => <City weatherData={weather.city} />}
+            </Tab.Screen>
         </Tab.Navigator>
     )
 }

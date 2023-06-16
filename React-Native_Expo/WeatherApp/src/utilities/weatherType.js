@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export const weatherType = {
     Thunderstorm: {
         icon: 'zap',

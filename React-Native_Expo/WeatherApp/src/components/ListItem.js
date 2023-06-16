@@ -1,20 +1,21 @@
-import React from "react"
-import { View, Text, StyleSheet } from "react-native"
+/* eslint-disable prettier/prettier */
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 import { Feather } from '@expo/vector-icons'
+import moment from 'moment'
+import { weatherType } from '../utilities/weatherType'
 
 const ListItem = (props) => {
-    // props: from the parent to the child, dt_txt, min, and max 
-    // are being passed down to the child from the parent (Upcomingweather)
     const { dt_txt, min, max, conditon } = props
-    // const { item, temp, date } = styles
-    // ^^ allows us to get rid of "styles." on line 10 & line 12-14
-    // look at UpcomingWeather for more information (example)
     return (
         <View style={styles.item} >
-            <Feather name={'sun'} size={50} color={'white'} />
-            <Text style={styles.date}>{dt_txt}</Text>
-            <Text style={styles.temp}>{min}</Text>
-            <Text style={styles.temp}>{max}</Text>
+            <Feather name={weatherType[conditon].icon} size={50} color={'white'} />
+            <View style={styles.dateTextWrapper}>
+                <Text style={styles.date}>{moment(dt_txt).format('dddd')}</Text>
+                <Text style={styles.date}>{moment(dt_txt).format('h:mm:ss a')}</Text>
+            </View>
+            {/* <Text style={styles.temp}>{`${Math.round(min)}°`}</Text> */}
+            <Text style={styles.temp}>{`${Math.round(min)}° / ${Math.round(max)}°`}</Text>
         </View>
     )
 }
@@ -29,6 +30,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 5,
         backgroundColor: 'pink'
+    },
+    dateTextWrapper: {
+        flexDirection: 'column'
     },
     temp: {
         color: 'white',

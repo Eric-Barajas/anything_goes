@@ -1,33 +1,32 @@
-import React from "react";
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
-import { Feather } from '@expo/vector-icons';
-import RowText from "../components/RowText";
-import { weatherType } from "../utilities/weatherType";
+/* eslint-disable prettier/prettier */
+import React from 'react'
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
+import { Feather } from '@expo/vector-icons'
+import RowText from '../components/RowText'
+import { weatherType } from '../utilities/weatherType'
 
-const CurrentWeather = () => {
-    const { wrapper, container, temp, feels, highLowWrapper, highLow, bodyWrapper, description, message } = styles
+const CurrentWeather = ({ weatherData }) => {
+    const { wrapper, container, tempStyles, feels, highLowWrapper, highLow, bodyWrapper, description, message } = styles
+    // console.log(weatherData)
+    const { main: { temp, feels_like, temp_max, temp_min }, weather } = weatherData
+    const weatherConditon = weather[0].main
     return (
-        <SafeAreaView style={wrapper}>
+        <SafeAreaView style={[wrapper, { backgroundColor: weatherType[weatherConditon].backgroundColor }]}>
             <View style={container}>
-                <Feather name="sun" size={100} color="black" />
-                <Text style={temp}> 6 </Text>
-                <Text style={feels}> Feels like 5 </Text>
+                <Feather name={weatherType[weatherConditon].icon} size={100} color="white" />
+                <Text style={tempStyles}> {temp}° </Text>
+                <Text style={feels}> {`Feels like ${feels_like}°`} </Text>
                 <RowText
-                    messageOne={'High: 8'}
-                    messageTwo={'Low: 6'}
+                    messageOne={`High: ${temp_max}°`}
+                    messageTwo={`Low: ${temp_min}°`}
                     containerStyles={highLowWrapper}
                     messageOneStyles={highLow}
                     messageTwoStyles={highLow}
                 />
-                {/* ^ whats above replaced whats below (you can see the completed version on line 20) */}
-                {/* <View style={highLowWrapper}>
-                    <Text style={highLow}> High: 8 </Text>
-                    <Text style={highLow}> Low: 6</Text>
-                </View> */}
             </View>
             <RowText
-                messageOne={"It's sunny"}
-                messageTwo={weatherType['Thunderstorm'].message}
+                messageOne={weather[0].description}
+                messageTwo={weatherType[weatherConditon].message}
                 containerStyles={bodyWrapper}
                 messageOneStyles={description}
                 messageTwoStyles={message}
@@ -38,43 +37,43 @@ const CurrentWeather = () => {
 
 const styles = StyleSheet.create({
     wrapper: {
-        backgroundColor: "pink",
+        backgroundColor: 'pink',
         flex: 1
     },
     container: {
         flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-    temp: {
-        color: "black",
-        fontSize: 48,
+    tempStyles: {
+        color: 'black',
+        fontSize: 48
     },
     feels: {
-        color: "black",
-        fontSize: 30,
+        color: 'black',
+        fontSize: 30
     },
     highLowWrapper: {
-        flexDirection: "row",
+        flexDirection: 'row'
     },
     highLow: {
-        color: "black",
-        fontSize: 20,
+        color: 'black',
+        fontSize: 20
     },
     bodyWrapper: {
-        justifyContent: "flex-end",
-        alignItems: "flex-start",
+        justifyContent: 'flex-end',
+        alignItems: 'flex-start',
         paddingLeft: 25,
-        marginBottom: 40,
+        marginBottom: 40
     },
     description: {
-        color: "black",
-        fontSize: 48,
+        color: 'black',
+        fontSize: 48
     },
     message: {
-        color: "black",
-        fontSize: 30,
-    },
+        color: 'black',
+        fontSize: 30
+    }
 })
 
-export default CurrentWeather;
+export default CurrentWeather
