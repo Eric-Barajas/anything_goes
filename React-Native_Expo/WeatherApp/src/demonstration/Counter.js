@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react'
 import { View, Text, Button, StyleSheet, SafeAreaView } from 'react-native'
 
@@ -6,7 +7,7 @@ const Counter = () => {
     const [newCount, setNewCount] = useState(0)
 
     useEffect(() => {
-        console.log(`count changed`)
+        console.log('count changed')
     }, [count])
 
     return (
@@ -16,22 +17,22 @@ const Counter = () => {
                 <Button
                     color={'red'}
                     title={'Increase the count'}
-                    onPress={() => { setCount(count + 1); }}
+                    onPress={() => { setCount(count + 1) }}
                 />
                 <Button
                     color={'green'}
                     title={'Decrease the count'}
-                    onPress={() => { setCount(count - 1); }}
+                    onPress={() => { setCount(count - 1) }}
                 />
                 <Button
                     color={'rebeccapurple'}
                     title={'Increase the count'}
-                    onPress={() => { setNewCount(count + 1); }}
+                    onPress={() => { setNewCount(count + 1) }}
                 />
                 <Button
                     color={'turquoise'}
                     title={'Decrease the count'}
-                    onPress={() => { setNewCount(count - 1); }}
+                    onPress={() => { setNewCount(count - 1) }}
                 />
             </View>
         </SafeAreaView>
@@ -40,7 +41,7 @@ const Counter = () => {
 
 const styles = StyleSheet.create({
     wrapper: {
-        flex: 1,
+        flex: 1
     },
     container: {
         flex: 1,
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     title: {
         alignSelf: 'center',
         fontSize: 25,
-        marginTop: 25,
+        marginTop: 25
     }
 })
 

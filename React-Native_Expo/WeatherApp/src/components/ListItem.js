@@ -9,7 +9,7 @@ const ListItem = (props) => {
     const { dt_txt, min, max, conditon } = props
     return (
         <View style={styles.item} >
-            <Feather name={weatherType[conditon].icon} size={50} color={'white'} />
+            <Feather name={weatherType[conditon]?.icon} size={50} color={'white'} />
             <View style={styles.dateTextWrapper}>
                 <Text style={styles.date}>{moment(dt_txt).format('dddd')}</Text>
                 <Text style={styles.date}>{moment(dt_txt).format('h:mm:ss a')}</Text>
