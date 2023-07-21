@@ -7,3 +7,4 @@ literallyl nothing
 no need for this anymore 
 
 yrp
+next to learn to is next.js
