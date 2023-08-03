@@ -25,7 +25,7 @@ const Tabs = ({ weather }) => {
                     fontWeight: 'bold',
                     fontSize: 25,
                     color: 'tomato'
-                },
+                }
             }}
         >
             <Tab.Screen
